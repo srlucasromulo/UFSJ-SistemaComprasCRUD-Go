@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
+	inter "sistema-clp/interface"
 )
 
-func main () {
-
-	fmt.Println("hello world")
-
+func main() {
+	inter.Menu()
 }
