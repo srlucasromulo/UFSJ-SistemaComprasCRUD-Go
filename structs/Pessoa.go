@@ -1,8 +1,6 @@
 package structs
 
 type Pessoa struct {
-	nome string
+	nome     string
 	endereco string
 }
-
-
