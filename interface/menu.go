@@ -18,6 +18,5 @@ func Menu() {
 
 	switch opt {
 	case 1:
-		fmt.Println("Ola", opt)
 	}
 }

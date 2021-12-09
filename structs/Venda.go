@@ -14,3 +14,11 @@ func (v *Venda) NovaVenda(numero int, data time.Time, cliente Cliente) {
 	v.data = data
 	v.cliente = cliente
 }
+
+func (v *Venda) Total() float32 {
+	var soma float32 = 0
+	for i := range v.itens {
+		soma += i.Total()
+	}
+	return soma
+}
