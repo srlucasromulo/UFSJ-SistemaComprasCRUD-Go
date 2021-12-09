@@ -41,8 +41,8 @@ func (v *Venda) SetCliente(cliente Cliente) {
 
 func (v *Venda) Total() float32 {
 	var soma float32 = 0
-	//for i := range v.itens {
-	//	soma += v.itens[i].Total()
-	//}
+	for i := range v.itens {
+		soma += v.itens[i].Total()
+	}
 	return soma
 }

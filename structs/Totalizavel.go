@@ -1,5 +1,5 @@
 package structs
 
 type Totalizavel interface {
-	Total()
+	Total() float32
 }

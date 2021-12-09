@@ -36,6 +36,6 @@ func (item *ItemVenda) SetQuantidade(quantidade int) {
 	item.quantidade = quantidade
 }
 
-//func (i *ItemVenda) Total() float32 {
-//	return i.Valor * float32(i.Quantidade)
-//}
+func (i *ItemVenda) Total() float32 {
+	return i.valor * float32(i.quantidade)
+}

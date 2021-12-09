@@ -10,7 +10,7 @@ func main() {
 	inter.Menu()
 
 	var prod structs.Produto
-	var item structs.ItemVenda
+	item := new(structs.ItemVenda)
 	// var venda structs.Venda
 	// var cli structs.Cliente
 
@@ -20,5 +20,9 @@ func main() {
 
 	item.NovoItemVenda(prod, 10.5, 2)
 
-	fmt.Println(item.Total())
+	imprimeTotal(item)
+}
+
+func imprimeTotal(modulo structs.Totalizavel) {
+	fmt.Println(modulo.Total())
 }
