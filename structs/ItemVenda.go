@@ -2,16 +2,16 @@ package structs
 
 type ItemVenda struct {
 	Produto    Produto
-	valor      float32
-	quantidade int
+	Valor      float32
+	Quantidade int
 }
 
 func (i *ItemVenda) NovoItemVenda(p Produto, valor float32, quantidade int) {
 	i.Produto = p
-	i.valor = valor
-	i.quantidade = quantidade
+	i.Valor = valor
+	i.Quantidade = quantidade
 }
 
 func (i *ItemVenda) Total() float32 {
-	return i.valor * float32(i.quantidade)
+	return i.Valor * float32(i.Quantidade)
 }

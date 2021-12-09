@@ -18,7 +18,7 @@ func (v *Venda) NovaVenda(numero int, data time.Time, cliente Cliente) {
 func (v *Venda) Total() float32 {
 	var soma float32 = 0
 	for i := range v.itens {
-		soma += i.Total()
+		soma += v.itens[i].Total()
 	}
 	return soma
 }
