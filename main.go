@@ -3,24 +3,28 @@ package main
 import (
 	"fmt"
 	inter "sistema-clp/interface"
-	"sistema-clp/structs"
+	structs "sistema-clp/structs"
+	//"time"
 )
 
 func main() {
-	inter.Menu()
 
-	var prod structs.Produto
-	item := new(structs.ItemVenda)
-	// var venda structs.Venda
-	// var cli structs.Cliente
+	for {
+		opt := inter.Menu()
 
-	// cli.NovoCliente("Felipe", "Rua da morte", "MG-222", )
-	// venda.NovaVenda()
-	prod.NovoProduto(0, "teste", 10.5)
+		switch opt {
 
-	item.NovoItemVenda(prod, 10.5, 2)
+		case 1, 2:
+			crud := inter.MenuCRUD(opt)
+			fmt.Println(crud)
 
-	imprimeTotal(item)
+		}
+
+		if opt == 0 {
+			break
+		}
+	}
+
 }
 
 func imprimeTotal(modulo structs.Totalizavel) {
