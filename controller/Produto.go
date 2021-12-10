@@ -2,7 +2,6 @@ package controller
 
 import (
 	"fmt"
-	//"fmt"
 	"sistema-clp/model"
 	"sistema-clp/view"
 )
@@ -59,4 +58,15 @@ func ApagarProduto(produtos []model.Produto) []model.Produto {
 	produtos = append(produtos[:index], produtos[index+1:]...)
 
 	return produtos
+}
+
+func GetProduto(cod int, produtos []model.Produto) model.Produto {
+	var index int
+	for i := range produtos {
+		if produtos[i].GetCodigo() == cod {
+			index = i
+		}
+	}
+
+	return produtos[index]
 }

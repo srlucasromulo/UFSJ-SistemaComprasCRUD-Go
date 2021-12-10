@@ -8,9 +8,9 @@ import (
 
 func NovoCliente() model.Cliente {
 
-	nome, endereco, rg, _, _, _ := view.MenuNovoCliente()
+	nome, endereco, rg, bday := view.MenuNovoCliente()
 	var c model.Cliente
-	c.NovoCliente(nome, endereco, rg)
+	c.NovoCliente(nome, endereco, rg, bday)
 	return c
 }
 
@@ -30,9 +30,9 @@ func AtualizaCliente(clientes []model.Cliente) []model.Cliente {
 
 	for i := range clientes {
 		if clientes[i].GetRg() == rg {
-			nome, endereco, rg, _, _, _ := view.MenuNovoCliente()
+			nome, endereco, rg, bday := view.MenuNovoCliente()
 			var c model.Cliente
-			c.NovoCliente(nome, endereco, rg)
+			c.NovoCliente(nome, endereco, rg, bday)
 			clientes[i] = c
 		}
 	}
@@ -58,4 +58,14 @@ func ApagarCliente(clientes []model.Cliente) []model.Cliente {
 	clientes = append(clientes[:index], clientes[index+1:]...)
 
 	return clientes
+}
+
+func GetCliente(rg string, clientes []model.Cliente) model.Cliente {
+	var index int
+	for i := range clientes {
+		if clientes[i].GetRg() == rg {
+			index = i
+		}
+	}
+	return clientes[index]
 }

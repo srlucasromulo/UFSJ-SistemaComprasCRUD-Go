@@ -1,19 +1,17 @@
 package model
 
-import "time"
-
 type Cliente struct {
 	Pessoa
 	rg   string
-	bday time.Time
+	bday Bday
 }
 
 //func (c *Cliente) NovoCliente(nome string, endereco string, rg string, bday time.Time) {
-func (c *Cliente) NovoCliente(nome string, endereco string, rg string) {
+func (c *Cliente) NovoCliente(nome string, endereco string, rg string, b Bday) {
 	c.SetNome(nome)
 	c.SetEndereco(endereco)
 	c.SetRg(rg)
-	//c.SetBday(bday)
+	c.SetBday(b)
 }
 
 func (c *Cliente) GetNome() string {
@@ -40,10 +38,10 @@ func (c *Cliente) SetRg(rg string) {
 	c.rg = rg
 }
 
-func (c *Cliente) GetBday() time.Time {
+func (c *Cliente) GetBday() Bday {
 	return c.bday
 }
 
-func (c *Cliente) SetBday(bday time.Time) {
+func (c *Cliente) SetBday(bday Bday) {
 	c.bday = bday
 }
