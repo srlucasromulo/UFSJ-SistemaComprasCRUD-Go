@@ -1,29 +1,52 @@
 package controller
 
 import (
-	inter "sistema-clp/interface"
-	structs "sistema-clp/structs"
+	"fmt"
+	"sistema-clp/model"
+	"sistema-clp/view"
 )
 
-func NovoCliente(clientes []structs.Cliente) []structs.Cliente {
-	nome, endereco, rg, _, _, _ := inter.MenuNovoCliente()
-	var c structs.Cliente
+func NovoCliente() model.Cliente {
+
+	nome, endereco, rg, _, _, _ := view.MenuNovoCliente()
+	var c model.Cliente
 	c.NovoCliente(nome, endereco, rg)
+	return c
+}
+
+func AdicionarNovoCliente(c model.Cliente, clientes []model.Cliente) []model.Cliente {
+
 	clientes = append(clientes, c)
 	return clientes
 }
 
-func AtualizaCliente(rg string, clientes []structs.Cliente) {
+func AtualizaCliente(clientes []model.Cliente) []model.Cliente {
+
+	view.MenuListaCliente(clientes)
+
+	var rg string
+	fmt.Println("Digite o RG do cliente: ")
+	fmt.Scanf("%s", &rg)
+
 	for i := range clientes {
 		if clientes[i].GetRg() == rg {
-			nome, endereco := inter.MenuAtualizaCliente()
-			clientes[i].SetEndereco(endereco)
-			clientes[i].SetNome(nome)
+			nome, endereco, rg, _, _, _ := view.MenuNovoCliente()
+			var c model.Cliente
+			c.NovoCliente(nome, endereco, rg)
+			clientes[i] = c
 		}
 	}
+	return clientes
 }
 
-func ApagarCliente(rg string, clientes []structs.Cliente) []structs.Cliente {
+func ApagarCliente(clientes []model.Cliente) []model.Cliente {
+
+	view.MenuListaCliente(clientes)
+
+	var rg string
+	fmt.Println("Digite o RG do cliente: ")
+	fmt.Scanf("%s", &rg)
+
 	var index int
 	for i := range clientes {
 		if clientes[i].GetRg() == rg {

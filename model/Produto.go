@@ -1,4 +1,4 @@
-package structs
+package model
 
 type Produto struct {
 	codigo int

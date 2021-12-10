@@ -1,4 +1,4 @@
-package structs
+package model
 
 type ItemVenda struct {
 	produto    Produto

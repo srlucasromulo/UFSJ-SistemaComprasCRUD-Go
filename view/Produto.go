@@ -1,8 +1,8 @@
-package inter
+package view
 
 import (
 	"fmt"
-	"sistema-clp/structs"
+	"sistema-clp/model"
 )
 
 func MenuCrudProduto() int {
@@ -39,7 +39,7 @@ func MenuNovoProduto() (int, string, float32) {
 	return codigo, nome, valor
 }
 
-func MenuListaProduto(produtos []structs.Produto) {
+func MenuListaProduto(produtos []model.Produto) {
 	for i := range produtos {
 		fmt.Println("Codigo: ", produtos[i].GetCodigo())
 		fmt.Println("Nome: ", produtos[i].GetNome())

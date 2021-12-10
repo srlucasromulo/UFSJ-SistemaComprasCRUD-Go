@@ -1,11 +1,11 @@
-package inter
+package view
 
 import "fmt"
 
 func Menu() int {
 
 	fmt.Println("Escolha uma opção:")
-	fmt.Println("1 - Menu clinte")
+	fmt.Println("1 - Menu cliente")
 	fmt.Println("2 - Menu produto")
 	fmt.Println("3 - Registrar venda")
 	fmt.Println("0 - Sair")

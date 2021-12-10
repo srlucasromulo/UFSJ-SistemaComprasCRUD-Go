@@ -2,36 +2,57 @@ package controller
 
 import (
 	"fmt"
-	inter "sistema-clp/interface"
-	structs "sistema-clp/structs"
+	//"fmt"
+	"sistema-clp/model"
+	"sistema-clp/view"
 )
 
-func NovoProduto(produtos []structs.Produto) []structs.Produto {
+func NovoProduto() model.Produto {
 
-	codigo, nome, valor := inter.MenuNovoProduto()
-	var p structs.Produto
+	codigo, nome, valor := view.MenuNovoProduto()
+	var p model.Produto
 	p.NovoProduto(codigo, nome, valor)
-	produtos = append(produtos, p)
-	fmt.Println(produtos[0].GetNome())
+	return p
+}
 
+func AdicionarNovoProduto(p model.Produto, produtos []model.Produto) []model.Produto {
+
+	produtos = append(produtos, p)
 	return produtos
 }
 
-func AtualizaProduto(cod int, produtos []structs.Produto) {
+func AtualizaProduto(produtos []model.Produto) []model.Produto {
+
+	view.MenuListaProduto(produtos)
+
+	var cod int
+	fmt.Println("Digite o codigo do produto: ")
+	fmt.Scanf("%s", &cod)
+
 	for i := range produtos {
 		if produtos[i].GetCodigo() == cod {
-			nome, valor := inter.MenuAtualizaProduto()
-			produtos[i].SetValor(valor)
-			produtos[i].SetNome(nome)
+			nome, valor := view.MenuAtualizaProduto()
+			var p model.Produto
+			p.NovoProduto(cod, nome, valor)
+			produtos[i] = p
 		}
 	}
+	return produtos
 }
 
-func ApagarProduto(cod int, produtos []structs.Produto) []structs.Produto {
+func ApagarProduto(produtos []model.Produto) []model.Produto {
+
+	view.MenuListaProduto(produtos)
+
+	var cod int
+	fmt.Println("Digite o codigo do produto: ")
+	fmt.Scanf("%d", &cod)
+
 	var index int
 	for i := range produtos {
 		if produtos[i].GetCodigo() == cod {
 			index = i
+			break
 		}
 	}
 

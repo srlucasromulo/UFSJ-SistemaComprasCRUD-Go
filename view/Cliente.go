@@ -1,8 +1,8 @@
-package inter
+package view
 
 import (
 	"fmt"
-	"sistema-clp/structs"
+	"sistema-clp/model"
 )
 
 func MenuCrudCliente() int {
@@ -40,7 +40,8 @@ func MenuNovoCliente() (string, string, string, int, int, int) {
 	return nome, endereco, rg, dia, mes, ano
 }
 
-func MenuListaCliente(clientes []structs.Cliente) {
+func MenuListaCliente(clientes []model.Cliente) {
+
 	for i := range clientes {
 		fmt.Println("Nome: ", clientes[i].GetNome())
 		fmt.Println("Endereço: ", clientes[i].GetEndereco())

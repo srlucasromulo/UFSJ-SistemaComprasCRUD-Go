@@ -1,8 +1,8 @@
 package controller
 
 // import (
-// 	inter "sistema-clp/interface"
-// 	structs "sistema-clp/structs"
+// 	inter "sistema-clp/view"
+// 	model "sistema-clp/model"
 // )
 
 func NovaVenda() {}

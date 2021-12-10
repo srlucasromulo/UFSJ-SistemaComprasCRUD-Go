@@ -2,68 +2,71 @@ package main
 
 import (
 	"fmt"
-	control "sistema-clp/controller"
-	inter "sistema-clp/interface"
-	structs "sistema-clp/structs"
+	"sistema-clp/controller"
+	"sistema-clp/model"
+	"sistema-clp/view"
 )
 
 func main() {
-	clientes := make([]structs.Cliente, 0)
-	produtos := make([]structs.Produto, 0)
-	//var vendas []structs.Venda
+	clientes := make([]model.Cliente, 0)
+	produtos := make([]model.Produto, 0)
+	//var vendas []model.Venda
 
 	for {
 
-		opt := inter.Menu()
+		opt := view.Menu()
 
 		switch opt {
 
 		case 1:
-			crud := inter.MenuCrudCliente()
-			switch crud {
-			case 1:
-				clientes = control.NovoCliente(clientes)
-			case 2:
-				inter.MenuListaCliente(clientes)
-			case 3:
-				var rg string
-				inter.MenuListaCliente(clientes)
-				fmt.Println("Digite o RG do cliente: ")
-				fmt.Scanf("%s", &rg)
-				control.AtualizaCliente(rg, clientes)
-			case 4:
-				var rg string
-				inter.MenuListaCliente(clientes)
-				fmt.Println("Digite o RG do cliente: ")
-				fmt.Scanf("%s", &rg)
-				clientes = control.ApagarCliente(rg, clientes)
-			default:
-				fmt.Println("Opção inválida!!")
+			for {
+				crud := view.MenuCrudCliente()
+				switch crud {
+				case 1:
+					var c model.Cliente
+					c = controller.NovoCliente()
+					clientes = controller.AdicionarNovoCliente(c, clientes)
+				case 2:
+					view.MenuListaCliente(clientes)
+				case 3:
+					clientes = controller.AtualizaCliente(clientes)
+				case 4:
+					clientes = controller.ApagarCliente(clientes)
+
+				case 0:
+				default:
+					fmt.Println("Opção inválida!!")
+				}
+				if crud == 0 {
+					break
+				}
 			}
 
 		case 2:
-			crud := inter.MenuCrudProduto()
-			switch crud {
-			case 1:
-				produtos = control.NovoProduto(produtos)
-			case 2:
-				inter.MenuListaProduto(produtos)
-			case 3:
-				var cod int
-				inter.MenuListaProduto(produtos)
-				fmt.Println("Digite o codido do produto: ")
-				fmt.Scanf("%d", &cod)
-				control.AtualizaProduto(cod, produtos)
-			case 4:
-				var cod int
-				inter.MenuListaProduto(produtos)
-				fmt.Println("Digite o codido do produto: ")
-				fmt.Scanf("%d", &cod)
-				produtos = control.ApagarProduto(cod, produtos)
-			default:
-				fmt.Println("Opção inválida!!")
+			for {
+				crud := view.MenuCrudProduto()
+				switch crud {
+				case 1:
+					var p model.Produto
+					p = controller.NovoProduto()
+					produtos = controller.AdicionarNovoProduto(p, produtos)
+				case 2:
+					view.MenuListaProduto(produtos)
+				case 3:
+					produtos = controller.AtualizaProduto(produtos)
+				case 4:
+					produtos = controller.ApagarProduto(produtos)
+
+				case 0:
+				default:
+					fmt.Println("Opção inválida!!")
+				}
+				if crud == 0 {
+					break
+				}
 			}
 
+		case 0:
 		default:
 			fmt.Println("Opção inválida!!")
 		}
@@ -74,6 +77,6 @@ func main() {
 	}
 }
 
-func imprimeTotal(modulo structs.Totalizavel) {
+func imprimeTotal(modulo model.Totalizavel) {
 	fmt.Println(modulo.Total())
 }
