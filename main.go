@@ -68,55 +68,17 @@ func main() {
 		case 3:
 			for {
 				crud := view.MenuCrudVenda()
-				itens := make([]model.ItemVenda, 0)
 				switch crud {
 				case 1:
 					var v model.Venda
-					var rg string
-					var num int
-					view.MenuListaCliente(clientes)
-					fmt.Println("Digite um RG: ")
-					fmt.Scanf("%s", &rg)
-					c := controller.GetCliente(rg, clientes)
-					fmt.Println("Digite o numero da compra")
-					fmt.Scanf("%d", &num)
-					for {
-						var opt int
-						var cod int
-						var item model.ItemVenda
-						fmt.Println("1 - Adicionar Produto")
-						fmt.Println("0 - Fechar venda")
-						fmt.Scanf("%d", &opt)
-						if opt == 0 {
-							break
-						}
-
-						view.MenuListaProduto(produtos)
-						fmt.Print("Digite o codigo do produto: ")
-						fmt.Scanf("%d", &cod)
-						produto := controller.GetProduto(cod, produtos)
-						fmt.Print("Digite a quantidade de produto: ")
-						fmt.Scanf("%d", &cod)
-						valor := produto.GetValor()
-						item.NovoItemVenda(produto, valor, cod)
-						itens = append(itens, item)
-
-					}
-					var dia int
-					var mes int
-					var ano int
-					fmt.Print("Digite o dia, mes e ano da venda: ")
-					fmt.Scanf("%d %d %d", &dia, &mes, &ano)
-					var bday model.Bday
-					bday.NovoBday(dia, mes, ano)
-					v = controller.NovaVenda(c, itens, num, bday)
+					v = controller.NovaVenda(clientes, produtos)
 					vendas = controller.AdicionarNovaVenda(v, vendas)
 				case 2:
 					view.MenuListaVenda(vendas)
 				case 3:
 					vendas = controller.ApagarVenda(vendas)
 				case 4:
-					fmt.Println(view.PrintTotal(vendas))
+					controller.DetalharVenda(vendas)
 
 				case 0:
 				default:

@@ -26,7 +26,7 @@ func AtualizaProduto(produtos []model.Produto) []model.Produto {
 
 	var cod int
 	fmt.Println("Digite o codigo do produto: ")
-	fmt.Scanf("%s", &cod)
+	fmt.Scanf("%d", &cod)
 
 	for i := range produtos {
 		if produtos[i].GetCodigo() == cod {
