@@ -2,6 +2,7 @@ package inter
 
 import (
 	"fmt"
+	"sistema-clp/structs"
 )
 
 func MenuCrudCliente() int {
@@ -28,19 +29,36 @@ func MenuNovoCliente() (string, string, string, int, int, int) {
 	var dia, mes, ano int
 
 	fmt.Println("Digite o nome:")
-	fmt.Scanf("%s", nome)
+	fmt.Scanf("%s", &nome)
 	fmt.Println("Digite o endereço:")
-	fmt.Scanf("%s", endereco)
+	fmt.Scanf("%s", &endereco)
 	fmt.Println("Digite o RG:")
-	fmt.Scanf("%s", rg)
+	fmt.Scanf("%s", &rg)
 	fmt.Println("Digite a data de nascimento:")
 	fmt.Scanf("%d-%d-%d", &dia, &mes, &ano)
 
 	return nome, endereco, rg, dia, mes, ano
 }
 
-func MenuListaCliente() {}
+func MenuListaCliente(clientes []structs.Cliente) {
+	for i := range clientes {
+		fmt.Println("Nome: ", clientes[i].GetNome())
+		fmt.Println("Endereço: ", clientes[i].GetEndereco())
+		fmt.Println("Rg: ", clientes[i].GetRg())
+	}
+}
 
-func MenuAtualizaCliente() {}
+func MenuAtualizaCliente() (string, string) {
+	var nome string
+	var endereco string
+
+	fmt.Println("Digite o nome do cliente: ")
+	fmt.Scanf("%s", &nome)
+
+	fmt.Println("Digite o endereço do cliente: ")
+	fmt.Scanf("%s", &endereco)
+
+	return nome, endereco
+}
 
 func MenuExcluiCliente() {}

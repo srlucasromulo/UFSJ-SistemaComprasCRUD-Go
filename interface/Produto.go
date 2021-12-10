@@ -2,6 +2,7 @@ package inter
 
 import (
 	"fmt"
+	"sistema-clp/structs"
 )
 
 func MenuCrudProduto() int {
@@ -31,15 +32,32 @@ func MenuNovoProduto() (int, string, float32) {
 	fmt.Println("Digite o código do produto:")
 	fmt.Scanf("%d", &codigo)
 	fmt.Println("Digite o nome do produto:")
-	fmt.Scanf("%s", nome)
+	fmt.Scanf("%s", &nome)
 	fmt.Println("Digite o valor do produto:")
 	fmt.Scanf("%f", &valor)
 
 	return codigo, nome, valor
 }
 
-func MenuListaProduto() {}
+func MenuListaProduto(produtos []structs.Produto) {
+	for i := range produtos {
+		fmt.Println("Codigo: ", produtos[i].GetCodigo())
+		fmt.Println("Nome: ", produtos[i].GetNome())
+		fmt.Println("Valor: ", produtos[i].GetValor())
+	}
+}
 
-func MenuAtualizaProduto() {}
+func MenuAtualizaProduto() (string, float32) {
+	var nome string
+	var valor float32
+
+	fmt.Println("Digite o nome do produto: ")
+	fmt.Scanf("%s", &nome)
+
+	fmt.Println("Digite o valor do produto: ")
+	fmt.Scanf("%f", &valor)
+
+	return nome, valor
+}
 
 func MenuExcluiProduto() {}

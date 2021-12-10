@@ -8,9 +8,8 @@ import (
 )
 
 func main() {
-
-	var clientes []structs.Cliente
-	var produtos []structs.Produto
+	clientes := make([]structs.Cliente, 0)
+	produtos := make([]structs.Produto, 0)
 	//var vendas []structs.Venda
 
 	for {
@@ -23,14 +22,21 @@ func main() {
 			crud := inter.MenuCrudCliente()
 			switch crud {
 			case 1:
-				control.NovoCliente(clientes)
-
+				clientes = control.NovoCliente(clientes)
 			case 2:
-				continue
+				inter.MenuListaCliente(clientes)
 			case 3:
-				continue
+				var rg string
+				inter.MenuListaCliente(clientes)
+				fmt.Println("Digite o RG do cliente: ")
+				fmt.Scanf("%s", &rg)
+				control.AtualizaCliente(rg, clientes)
 			case 4:
-				continue
+				var rg string
+				inter.MenuListaCliente(clientes)
+				fmt.Println("Digite o RG do cliente: ")
+				fmt.Scanf("%s", &rg)
+				clientes = control.ApagarCliente(rg, clientes)
 			default:
 				fmt.Println("Opção inválida!!")
 			}
@@ -39,14 +45,21 @@ func main() {
 			crud := inter.MenuCrudProduto()
 			switch crud {
 			case 1:
-				control.NovoProduto(produtos)
-
+				produtos = control.NovoProduto(produtos)
 			case 2:
-				continue
+				inter.MenuListaProduto(produtos)
 			case 3:
-				continue
+				var cod int
+				inter.MenuListaProduto(produtos)
+				fmt.Println("Digite o codido do produto: ")
+				fmt.Scanf("%d", &cod)
+				control.AtualizaProduto(cod, produtos)
 			case 4:
-				continue
+				var cod int
+				inter.MenuListaProduto(produtos)
+				fmt.Println("Digite o codido do produto: ")
+				fmt.Scanf("%d", &cod)
+				produtos = control.ApagarProduto(cod, produtos)
 			default:
 				fmt.Println("Opção inválida!!")
 			}
