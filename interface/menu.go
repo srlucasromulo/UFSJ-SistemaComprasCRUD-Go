@@ -18,41 +18,40 @@ func Menu() int {
 	return opt
 }
 
-func MenuCRUD(tipo int) int {
-
-	valor := func(tipo int) string {
-		if tipo == 1 {
-			return "cliente"
-		}
-		if tipo == 2 {
-			return "produto"
-		}
-		return ""
-	}(tipo)
+func MenuCrudCliente() int {
 
 	fmt.Println("Escolha uma opção:")
-	fmt.Printf("1 - Novo %s\n", valor)
-	fmt.Printf("1 - Lista %s\n", valor)
-	fmt.Printf("1 - Atualiza %s\n", valor)
-	fmt.Printf("1 - Exclui %s\n", valor)
+	fmt.Println("1 - Novo cliente")
+	fmt.Println("2 - Lista cliente")
+	fmt.Println("3 - Atualiza cliente")
+	fmt.Println("4 - Exclui cliente")
 	fmt.Println("0 - Sair")
 
 	var opt int
-	fmt.Scanf("%d", &opt)
+	_, err := fmt.Scanf("%d", &opt)
+	if err != nil {
+		return 0
+	}
 
 	return opt
 }
 
-func MenuProduto() int {
+func MenuCrudProduto() int {
 
 	fmt.Println("Escolha uma opção:")
-	fmt.Println("1 - Novo clinte")
-	fmt.Println("2 - Atualiza cliente")
-	fmt.Println("3 - Excluir cliente")
-	fmt.Println("4 - Listar cliente")
+	fmt.Println("1 - Novo produto")
+	fmt.Println("2 - Lista produto")
+	fmt.Println("3 - Atualiza produto")
+	fmt.Println("4 - Exclui produto")
 	fmt.Println("0 - Sair")
 
-	return 0
+	var opt int
+	_, err := fmt.Scanf("%d", &opt)
+	if err != nil {
+		return 0
+	}
+
+	return opt
 }
 
 func MenuNovoCliente() (string, string, string, int, int, int) {
@@ -72,7 +71,7 @@ func MenuNovoCliente() (string, string, string, int, int, int) {
 	return nome, endereco, rg, dia, mes, ano
 }
 
-func MenuInserirProduto() (int, string, float32) {
+func MenuNovoProduto() (int, string, float32) {
 
 	var codigo int
 	var nome string

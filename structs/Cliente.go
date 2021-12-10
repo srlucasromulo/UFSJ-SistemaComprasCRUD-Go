@@ -8,11 +8,12 @@ type Cliente struct {
 	bday time.Time
 }
 
-func (c *Cliente) NovoCliente(nome string, endereco string, rg string, bday time.Time) {
+//func (c *Cliente) NovoCliente(nome string, endereco string, rg string, bday time.Time) {
+func (c *Cliente) NovoCliente(nome string, endereco string, rg string) {
 	c.SetNome(nome)
 	c.SetEndereco(endereco)
 	c.SetRg(rg)
-	c.SetBday(bday)
+	//c.SetBday(bday)
 }
 
 func (c *Cliente) GetNome() string {
